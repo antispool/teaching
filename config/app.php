@@ -168,7 +168,6 @@ return [
         LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
 
         Spatie\Fractal\FractalServiceProvider::class,
-        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
 
         /*
          * Package Service Providers...
