@@ -11,6 +11,6 @@ create database teaching;
 
 ====laravel console====
 
-php artisan d:m:m
+php artisan d:migration:m    
 php artisan db:seed
 
