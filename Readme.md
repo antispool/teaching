@@ -14,3 +14,6 @@ create database teaching;
 php artisan d:migration:m    
 php artisan db:seed
 
+
+Postman request examples file: teaching.postman_collection  
+
