@@ -1,7 +1,7 @@
+make .env file
 
 =====run in root project folder======= 
 
-curl -s http://getcomposer.org/installer | php  
 php composer.phar install
 php artisan vendor:publish
 
