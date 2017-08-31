@@ -2,7 +2,7 @@ make .env file
 
 =====run in root project folder======= 
 
-php composer.phar install
+php composer.phar install   
 php artisan vendor:publish
 
 ====mysql====
