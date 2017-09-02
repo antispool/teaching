@@ -64,23 +64,23 @@ class StudentController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        } else {
-            $student = new Student();
-            $student->setName($request->get('name'));
-            $student->setAge($request->get('age'));
-
-            if ($collegeId = $request->get('college')) { //TODO REFACTOR
-                $college = $this->em->find(College::class, $collegeId);
-                $college ? $student->setCollege($college) : null;
-            }
-
-            $this->em->persist($student);
-            $this->em->flush();
-
-            return response()->json(
-                fractal($student, new StudentTransformer())
-            );
         }
+
+        $student = new Student();
+        $student->setName($request->get('name'));
+        $student->setAge($request->get('age'));
+
+        if ($collegeId = $request->get('college')) {
+            $college = $this->em->find(College::class, $collegeId);
+            $college ? $student->setCollege($college) : null;
+        }
+
+        $this->em->persist($student);
+        $this->em->flush();
+
+        return response()->json(
+            fractal($student, new StudentTransformer())
+        );
     }
 
     /**
@@ -102,16 +102,17 @@ class StudentController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
-        } else {
-            $college = $request->get('college') ? $this->em->getRepository(College::class)->find($request->get('college')) : null;
-
-            $request->get('name') ? $student->setName($request->get('name')) : null;
-            $request->get('age') ? $student->setName($request->get('age')) : null;
-            $college ? $student->setCollege($college) : null;
-
-            $this->em->persist($student);
-            $this->em->flush();
         }
+
+        $college = $request->get('college') ? $this->em->getRepository(College::class)->find($request->get('college')) : null;
+
+        $request->get('name') ? $student->setName($request->get('name')) : null;
+        $request->get('age') ? $student->setName($request->get('age')) : null;
+        $college ? $student->setCollege($college) : null;
+
+        $this->em->persist($student);
+        $this->em->flush();
+
 
         return response()->json(fractal($student, new StudentTransformer()));
     }
